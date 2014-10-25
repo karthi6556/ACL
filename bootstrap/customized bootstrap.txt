@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap 101 Template</title>
+<link href="distcss/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+
+<script src="dist/js/jquery-2.1.1.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+</body>
+</html>
