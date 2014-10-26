@@ -20,8 +20,16 @@ $roles = $stmt2->fetchAll();
 $stmt3=$pdo->prepare("SELECT * FROM `features`");
 $stmt3->execute();
 $features = $stmt3->fetchAll();
+//Select Features Table
+$stmt4=$pdo->prepare("SELECT * FROM `role_features`");
+$stmt4->execute();
+$role_features = $stmt4->fetchAll();
+//Select Features Table
+$stmt5=$pdo->prepare("SELECT * FROM `role_users`");
+$stmt5->execute();
+$role_users = $stmt5->fetchAll();
 //Storing Fetched Objects in array 
-$store=array('users'=>$users,'roles'=>$roles,'features'=>$features);
+$store=array('users'=>$users,'roles'=>$roles,'features'=>$features,'role_features'=>$role_features,'role_users'=>$role_users);
 //Encodes Associative Array into JSON Objects 
 echo json_encode($store);
 }

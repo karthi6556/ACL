@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Oct 26, 2014 at 01:59 AM
+-- Generation Time: Oct 26, 2014 at 06:18 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.22
 
@@ -45,6 +45,28 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `role_name` varchar(30) DEFAULT NULL,
   `role_purpose` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_features`
+--
+
+CREATE TABLE IF NOT EXISTS `role_features` (
+  `role_id` varchar(15) NOT NULL,
+  `features_id` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_users`
+--
+
+CREATE TABLE IF NOT EXISTS `role_users` (
+  `role_id` varchar(15) NOT NULL,
+  `user_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

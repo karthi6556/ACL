@@ -17,6 +17,14 @@ echo'Roles Table Created Successfully<br>';
 $feature_creation=$pdo->prepare("CREATE TABLE IF NOT EXISTS `features`(`features_id` VARCHAR(15) NOT NULL,`features_name` VARCHAR(30),`features_descr` VARCHAR(30),`features_perm` VARCHAR(5),PRIMARY KEY(`features_id`))");
 $feature_creation->execute();
 echo'Features Table Created Successfully<br>';
+//Role Features Table Creation
+$role_feature=$pdo->prepare("CREATE TABLE IF NOT EXISTS `role_features`(`role_id` VARCHAR(15) NOT NULL,`features_id` VARCHAR(15) NOT NULL)");
+$role_feature->execute();
+echo'Features Table Created Successfully<br>';
+//Role Users Table Creation
+$role_users=$pdo->prepare("CREATE TABLE IF NOT EXISTS `role_users`(`role_id` VARCHAR(15) NOT NULL,`user_id` VARCHAR(15) NOT NULL)");
+$role_users->execute();
+echo'Role Users Table Created Successfully<br>';
 }
 catch(PDOException $e){
  echo'Connection failed '.$e->getMessage();
