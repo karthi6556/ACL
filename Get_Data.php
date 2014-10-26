@@ -1,22 +1,29 @@
 <?php
+//Headers for Declaring Json_encode
 header("Access-Control-Allow-Origin: *");
 header("Content-Type:text/plain");
-$host="localhost";
-$username="wwwphpde_admin";
-$password="fischer72";
-$db_name="wwwphpde_db";  
+//Includes Database Configuration
+include'dbConnect.php';
+//Exception  
 try{
+//Connect Establish
 $pdo=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
-$statement=$pdo->prepare("SELECT `username` FROM tb_signup LIMIT 5");
-$statement->execute();
-$array = $statement->fetchAll();
-$stmt=$pdo->prepare("SELECT * FROM `products`");
-$stmt->execute();
-$arr=$stmt->fetchALL();
-$a=array();
-$a['user']=$array;
-$a['prod']=$arr;
-echo json_encode($a);
+//Select User Table
+$stmt1=$pdo->prepare("SELECT * FROM `users`");
+$stmt1->execute();
+$users = $stmt1->fetchAll();
+//Select Roles Table
+$stmt2=$pdo->prepare("SELECT * FROM `roles`");
+$stmt2->execute();
+$roles = $stmt2->fetchAll();
+//Select Features Table
+$stmt3=$pdo->prepare("SELECT * FROM `features`");
+$stmt3->execute();
+$features = $stmt3->fetchAll();
+//Storing Fetched Objects in array 
+$store=array('users'=>$users,'roles'=>$roles,'features'=>$features);
+//Encodes Associative Array into JSON Objects 
+echo json_encode($store);
 }
 catch(PDOException $e){
  echo'Connection failed '.$e->getMessage();
