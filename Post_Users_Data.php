@@ -19,13 +19,13 @@ mysqli_select_db($db_name,$con);
 $query="SELECT * FROM `users`";
 $row=mysqli_query($con,$query);
 //User ID
-$user_id="USER0".mysqli_num_rows($row)+1;
+$user_id="USER0".(mysqli_num_rows($row)+1);
 //Exception Handling
 try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
  $stmt=$conn->prepare("INSERT INTO `users`(`user_id`,`user_name`,`user_designation`,`user_department`,`user_joined`)VALUES('$user_id','$user_name','$user_designation','$user_department','$user_joined')");
   $stmt->execute();
-  echo"User Data Inserted Successfully<br>";
+  echo"User Data Inserted Successfully<br>User-ID:".$user_id;
 }
 catch(PDOException $e)
 {
