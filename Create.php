@@ -6,7 +6,7 @@ try{
 //PDO(PHP Data Object) Database Connectivity Initialized
 $pdo=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
 //User Table Creation
-$user_creation=$pdo->prepare("CREATE TABLE IF NOT EXISTS `users`(`user_id` VARCHAR(15),`user_name` VARCHAR(50),`user_designation` VARCHAR(30),`user_department` VARCHAR(30),`user_joined` VARCHAR(15),PRIMARY KEY(user_id))");
+$user_creation=$pdo->prepare("CREATE TABLE IF NOT EXISTS `users`(`user_id` VARCHAR(15),`user_name` VARCHAR(50),`user_designation` VARCHAR(30),`user_department` VARCHAR(30),`user_joined` DATE,PRIMARY KEY(user_id))");
 $user_creation->execute();
 echo'Users Table Created Successfully<br>';
 //Roles Table Creation

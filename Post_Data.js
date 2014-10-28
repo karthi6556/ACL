@@ -2,10 +2,9 @@
 var app=angular.module('store',[]);
 //Declaring Controller as PostController
 app.controller('PostController',function($scope,$http){
-//Date Function Works in All Browsers
+//Date Function Format YYYY-MM-DD
  var d=new Date();
- var month = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
- $scope.user_joined=d.getDate()+"-"+month[d.getMonth()]+"-"+d.getFullYear();
+ $scope.user_joined=d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
 //Method for Resetting Form Fields
  $scope.reset_data=function(){
   $scope.user_name='';
