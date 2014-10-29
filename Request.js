@@ -1,7 +1,6 @@
-//Declaring Module
-var app=angular.module('store',[]);
 //Declaring Controller as PostController
-app.controller('PostController',function($scope,$http){
+var app=angular.module('store',[]);
+app.controller('RequestController',function($scope,$http){
 $scope.users=true;
 $scope.roles=false;
 $scope.features=false;
@@ -105,7 +104,7 @@ $scope.features_disp=function(){
  $scope.role_features_data=function(){
   $http({
    method:'POST',
-   url:'http://localhost:8080/GitHub/ACL/Role_Features_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Role_Features_Data.php',
    data:{'role_id':$scope.role_id,'features_id':$scope.features_id},
    headers:{'Content-Type':'text/plain'}
   })
@@ -121,7 +120,7 @@ $scope.features_disp=function(){
  $scope.role_users_data=function(){
   $http({
    method:'POST',
-   url:'http://localhost:8080/GitHub/ACL/Role_Users_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Role_Users_Data.php',
    data:{'role_id':$scope.role_id,'user_id':$scope.user_id},
    headers:{'Content-Type':'text/plain'}
   })
@@ -133,4 +132,20 @@ $scope.features_disp=function(){
    console.log(status);
   })
  }
+//GET Method 
+ $http({
+	   method:'GET',
+	   url:'http://localhost:8080/GitHub/ACL/Get_Data.php',
+	   headers:{'Content-Type':'text/plain'} 
+	   })
+ .success(function(data,status)
+       {
+	    $scope.get=data;
+		console.log(data);
+		console.log(status);
+	   })
+ .error(function(status,headers)
+       {
+	    console.log(status);
+	   })
 });

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html ng-app="store">
+ <head>
+  <title>Roles</title>
+   <meta charset="UTF-8"> 
+  <!--Bootstrap Styles-->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+  <!-- AngularJS Object Functions -->
+  <script src="angular-1.2.23/angular.min.js"></script>
+  <!-- Jquery -->
+  <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
+ </head>
+ <body ng-controller="RequestController">
+  <div class="container">
+   <form role="form" name="rolesForm" ng-submit="role_users_data();role_features_data();">
+    <div class="col-sm-3">
+     <select class="form-control" ng-model="user_id" required>
+      <option ng-repeat="a in get.users" ng-value="{{a.user_id}}">{{a.user_id}}</option>
+     </select>
+    </div>
+    <div class="col-sm-3">
+     <select class="form-control" ng-model="role_id" required>
+      <option ng-repeat="b in get.roles" ng-value="{{b.role_id}}">{{b.role_id}}</option>
+     </select>
+    </div>
+    <div class="col-sm-3">
+    <select class="form-control" ng-model="features_id" required>
+     <option ng-repeat="c in get.features" ng-value="{{c.features_id}}">{{c.features_id}}</option>
+    </select>
+    </div>
+    <div class="col-sm-3">
+     <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+   </form>
+   <div class="row">
+    <div class="col-sm-3">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>ID</th>
+        <th>Username</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="x in get.users|filter:user_id">
+        <td ng-bind-template="{{x.user_id}}"></td>
+        <td ng-bind-template="{{x.user_name}}"></td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <div class="col-sm-3">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>Role ID</th>
+        <th>Role Name</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="y in get.roles|filter:role_id">
+        <td ng-bind-template="{{y.role_id}}"></td>
+        <td ng-bind-template="{{y.role_name}}"></td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <div class="col-sm-3">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>Features ID</th>
+        <th>Features Name</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="z in get.features|filter:features_id">
+        <td ng-bind-template="{{z.features_id}}"></td>
+        <td ng-bind-template="{{z.features_name}}"></td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
+ </body>
+ <!-- Get,Post Data Script -->
+ <script src="Request.js"></script>
+</html>

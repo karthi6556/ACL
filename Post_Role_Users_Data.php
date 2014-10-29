@@ -16,7 +16,7 @@ try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
  $stmt=$conn->prepare("INSERT INTO `role_users`(`role_id`,`user_id`)VALUES('$role_id','$user_id')");
   $stmt->execute();
-  echo"User & Roles Data Inserted Successfully<br>";
+  echo"Role_ID & User_ID Inserted Successfully<br>";
 }
 catch(PDOException $e)
 {
