@@ -5,25 +5,25 @@
    <meta charset="UTF-8"> 
   <!--Bootstrap Styles-->
   <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="index.css" />
   <!-- AngularJS Object Functions -->
   <script src="angular-1.2.23/angular.min.js"></script>
   <!-- Jquery -->
   <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
  </head>
- <!-- Angular Application as Store -->
+ <!-- Angular Controller -->
  <body ng-controller="PostController">
-  <!-- Angular Controller -->
   <div class="container">
    <div class="page-header">
     <h2>User Registeration</h2>
    </div>
-   <form class="form-horizontal" name="regForm" role="form">
+   <form class="form-horizontal" name="regForm" role="form" ng-submit="post_users_data()">
     <div class="form-group">
      <label for="user_name" class="control-label col-sm-2">Username</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="user_name" class="form-control" id="user_name" placeHolder="UserName" name="user_name" ng-minlength="5" ng-maxlength="10" required>
+       <input type="text" ng-model="user_name" class="form-control" id="user_name" placeHolder="UserName" name="user_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="25"  required>
        <span ng-show="regForm.user_name.$dirty">
-        <span class="has-error" ng-show="regForm.user_name.$invalid">Minimum 5 & Maximum 10 Characters Required
+        <span class="help-block error" ng-show="regForm.user_name.$invalid">3 to 25 Alphabets & Numbers,other symbols aren't allowed.
         </span>
        </span>
       </div>
@@ -31,24 +31,32 @@
     <div class="form-group">
      <label for="user_designation" class="control-label col-sm-2">Designation</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="user_designation" class="form-control" id="user_designation" placeHolder="Designation" name="user_desg" required>
-      </div>
-    </div>
-    <div class="form-group">
+       <input type="text" ng-model="user_designation" class="form-control" id="user_designation" placeHolder="Designation" name="user_desg" ng-minlength="3" ng-maxlength="10" required>
+       <span ng-show="regForm.user_desg.$dirty">
+        <span class="help-block error" ng-show="regForm.user_desg.$invalid">3 to 10 Characters Only.
+        </span>
+       </span>
+     </div>
+   </div>
+   <div class="form-group">
      <label for="user_department" class="control-label col-sm-2">Department</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="user_department" class="form-control" id="user_department" placeHolder="Department" name="user_dept" required>
+       <input type="text" ng-model="user_department" class="form-control" id="user_department" placeHolder="Department" name="user_dept" ng-pattern="/^[A-Z]{3}$/" required>
+       <span ng-show="regForm.user_dept.$dirty">
+        <span class="help-block error" ng-show="regForm.user_dept.$invalid">Use UpperCase Letters & Maxlength 3 Only.
+        </span>
+       </span>
       </div>
     </div>
-    <div class="form-group">
+   <div class="form-group">
      <label for="user_joined" class="control-label col-sm-2">Joining Date</label>
       <div class="col-sm-4">
        <input type="date" ng-model="user_joined" class="form-control" id="user_joined" name="user_join" required>
       </div>
     </div>
-    <div class="form-group">
+   <div class="form-group">
      <div class="col-sm-offset-2 col-sm-3">
-      <button type="submit" ng-disabled="regForm.$invalid" ng-click="post_users_data()" class="btn btn-success">Submit</button>
+      <button type="submit" ng-disabled="regForm.$invalid" class="btn btn-success">Submit</button>
       <button type="button" ng-click="reset_data()" class="btn btn-warning">Reset</button>
      </div>
     </div>
