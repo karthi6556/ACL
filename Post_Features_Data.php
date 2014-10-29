@@ -18,13 +18,13 @@ mysqli_select_db($db_name,$con);
 $query="SELECT * FROM `features`";
 $row=mysqli_query($con,$query);
 //Features ID
-$features_id="FEAT0".mysqli_num_rows($row)+1;
+$features_id="FEAT0".(mysqli_num_rows($row)+1);
 //Exception Handling
 try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
  $stmt=$conn->prepare("INSERT INTO `features`(`features_id`,`features_name`,`features_descr`,`features_perm`)VALUES('$features_id','$features_name','$features_descr','$features_perm')");
   $stmt->execute();
-  echo"Features Data Inserted Successfully<br>";
+  echo"Features Data Inserted Successfully.<br>Features-ID:<strong>".$features_id."</srtong>";
 }
 catch(PDOException $e)
 {

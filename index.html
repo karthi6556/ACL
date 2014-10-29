@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html ng-app="store">
+ <head>
+  <title>Registrations</title>
+   <meta charset="UTF-8"> 
+  <!--Bootstrap Styles-->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="index.css" />
+  <!-- AngularJS Object Functions -->
+  <script src="angular-1.2.23/angular.min.js"></script>
+  <!-- Jquery -->
+  <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
+ </head>
+ <!-- Angular Controller -->
+ <body ng-controller="PostController">
+   <!--NavBar -->
+   <nav class="navbar navbar-default">
+    <ul class="nav nav-pills"> 
+     <li class="active"><a ng-click="users_disp()">User Registration</a></li> 
+     <li><a ng-click="roles_disp()">Roles Registration</a></li> 
+     <li><a ng-click="features_disp()">Features Registration</a></li>
+    </ul>
+   </nav>
+   <div class="container">
+   <!--User Registration Code Starts Here -->
+   <div ng-show="users">
+   <div class="page-header">
+    <h2>User Registration</h2>
+   </div>
+   <form class="form-horizontal" name="regForm" role="form" ng-submit="post_users_data()">
+    <div class="form-group">
+     <label for="user_name" class="control-label col-sm-2">Username</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="user_name" class="form-control" id="user_name" placeHolder="UserName" name="user_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="25"  required>
+       <span ng-show="regForm.user_name.$dirty">
+        <span class="help-block error" ng-show="regForm.user_name.$invalid">3 to 25 Alphabets & Numbers,other symbols aren't allowed.
+        </span>
+       </span>
+      </div>
+    </div>
+    <div class="form-group">
+     <label for="user_designation" class="control-label col-sm-2">Designation</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="user_designation" class="form-control" id="user_designation" placeHolder="Designation" name="user_desg" ng-minlength="3" ng-maxlength="10" required>
+       <span ng-show="regForm.user_desg.$dirty">
+        <span class="help-block error" ng-show="regForm.user_desg.$invalid">3 to 10 Characters Only.
+        </span>
+       </span>
+     </div>
+   </div>
+   <div class="form-group">
+     <label for="user_department" class="control-label col-sm-2">Department</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="user_department" class="form-control" id="user_department" placeHolder="Department" name="user_dept" ng-pattern="/^[A-Z]{3}$/" required>
+       <span ng-show="regForm.user_dept.$dirty">
+        <span class="help-block error" ng-show="regForm.user_dept.$invalid">Use UpperCase Letters & Maxlength 3 Only.
+        </span>
+       </span>
+      </div>
+    </div>
+   <div class="form-group">
+     <label for="user_joined" class="control-label col-sm-2">Joining Date</label>
+      <div class="col-sm-4">
+       <input type="date" ng-model="user_joined" class="form-control" id="user_joined" name="user_join" required>
+      </div>
+    </div>
+   <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" ng-disabled="regForm.$invalid" class="btn btn-success">Submit</button>
+      <button type="button" ng-click="reset_users_data()" class="btn btn-warning">Reset</button>
+     </div>
+    </div>
+   </form>
+   <div id="users"></div>
+   </div>
+   <!--User Registration Code Ends Here -->
+   <!--Adding Roles Registration Code Starts Here -->
+   <div ng-show="roles">
+   <div class="page-header">
+    <h2>Roles Registration</h2>
+   </div>
+   <form class="form-horizontal" name="rolesForm" role="form" ng-submit="post_roles_data()">
+    <div class="form-group">
+     <label for="role_name" class="control-label col-sm-2">Role Name</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="role_name" class="form-control" id="role_name" placeHolder="RoleName" name="role_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="10"  required>
+       <span ng-show="rolesForm.role_name.$dirty">
+        <span class="help-block error" ng-show="rolesForm.role_name.$invalid">3 to 10 Alphabets & Numbers,other symbols aren't allowed.
+        </span>
+       </span>
+      </div>
+    </div>
+    <div class="form-group">
+     <label for="role_purpose" class="control-label col-sm-2">Role Purpose</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="role_purpose" class="form-control" id="role_purpose" placeHolder="Role Purpose" name="role_purpose" ng-minlength="5" ng-maxlength="40" required>
+       <span ng-show="rolesForm.role_purpose.$dirty">
+        <span class="help-block error" ng-show="rolesForm.role_purpose.$invalid">5 to 40 Characters Only.
+        </span>
+       </span>
+     </div>
+   </div>
+   <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" ng-disabled="rolesForm.$invalid" class="btn btn-success">Submit</button>
+      <button type="button" ng-click="reset_roles_data()" class="btn btn-warning">Reset</button>
+     </div>
+    </div>
+   </form>
+   <div id="roles"></div>
+   </div>
+   <!--Roles Registration Code Ends Here -->
+   <!--Features Registration Code Starts Here-->
+   <div ng-show="features">
+   <div class="page-header">
+    <h2>Features Registration</h2>
+   </div>
+   <form class="form-horizontal" name="featuresForm" role="form" ng-submit="post_features_data()">
+    <div class="form-group">
+     <label for="features_name" class="control-label col-sm-2">Features Name</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="features_name" class="form-control" id="features_name" placeHolder="FeaturesName" name="features_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="10"  required>
+       <span ng-show="featuresForm.features_name.$dirty">
+        <span class="help-block error" ng-show="featuresForm.features_name.$invalid">3 to 10 Alphabets & Numbers,other symbols aren't allowed.
+        </span>
+       </span>
+      </div>
+    </div>
+    <div class="form-group">
+     <label for="features_descr" class="control-label col-sm-2">Features Description</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="features_descr" class="form-control" id="features_descr" placeHolder="Features Description" name="features_descr" ng-minlength="5" ng-maxlength="40" required>
+       <span ng-show="featuresForm.features_descr.$dirty">
+        <span class="help-block error" ng-show="featuresForm.features_descr.$invalid">5 to 40 Characters Only.
+        </span>
+       </span>
+     </div>
+   </div>
+   <div class="form-group">
+     <label for="features_perm" class="control-label col-sm-2">Features Permission</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="features_perm" class="form-control" id="features_perm" placeHolder="Features Permission" name="features_perm" ng-pattern="/^(Y|N)$/" required>
+       <span ng-show="featuresForm.features_perm.$dirty">
+        <span class="help-block error" ng-show="featuresForm.features_perm.$invalid">(Y)es/(N)o Only
+        </span>
+       </span>
+     </div>
+   </div>
+   <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" ng-disabled="featuresForm.$invalid" class="btn btn-success">Submit</button>
+      <button type="button" ng-click="reset_features_data()" class="btn btn-warning">Reset</button>
+     </div>
+    </div>
+   </form>
+   <div id="features"></div>
+   </div>
+   <!--Features Registration Code Ends Here-->
+  </div>
+ </body>
+ <!-- Post Data Script -->
+ <script src="Post_Data.js"></script>
+ <!-- Index Page Jquery -->
+ <script src="index.js"></script>
+</html>

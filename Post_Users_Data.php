@@ -25,7 +25,7 @@ try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
  $stmt=$conn->prepare("INSERT INTO `users`(`user_id`,`user_name`,`user_designation`,`user_department`,`user_joined`)VALUES('$user_id','$user_name','$user_designation','$user_department','$user_joined')");
   $stmt->execute();
-  echo"User Data Inserted Successfully<br>User-ID:".$user_id;
+  echo"User Registered Successfully.<br>User-ID:<strong>".$user_id."</srtong>";
 }
 catch(PDOException $e)
 {

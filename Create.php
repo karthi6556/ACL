@@ -14,7 +14,7 @@ $role_creation=$pdo->prepare("CREATE TABLE IF NOT EXISTS `roles`(`role_id` VARCH
 $role_creation->execute();
 echo'Roles Table Created Successfully<br>';
 //Features Table Creation
-$feature_creation=$pdo->prepare("CREATE TABLE IF NOT EXISTS `features`(`features_id` VARCHAR(15),`features_name` VARCHAR(30),`features_descr` VARCHAR(30),`features_perm` VARCHAR(5),PRIMARY KEY(features_id))");
+$feature_creation=$pdo->prepare("CREATE TABLE IF NOT EXISTS `features`(`features_id` VARCHAR(15),`features_name` VARCHAR(30),`features_descr` VARCHAR(50),`features_perm` VARCHAR(1),PRIMARY KEY(features_id))");
 $feature_creation->execute();
 echo'Features Table Created Successfully<br>';
 //Role Features Table Creation

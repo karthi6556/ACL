@@ -17,13 +17,13 @@ mysqli_select_db($db_name,$con);
 $query="SELECT * FROM `roles`";
 $row=mysqli_query($con,$query);
 //ROLE ID
-$role_id="ROLE0".mysqli_num_rows($row)+1;
+$role_id="ROLE0".(mysqli_num_rows($row)+1);
 //Exception Handling
 try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
  $stmt=$conn->prepare("INSERT INTO `roles`(`role_id`,`role_name`,`role_purpose`)VALUES('$role_id','$role_name','$role_purpose')");
   $stmt->execute();
-  echo"Roles Data Inserted Successfully<br>";
+  echo"Roles Data Inserted Successfully.<br>Role-ID:<strong>".$role_id."</srtong>";
 }
 catch(PDOException $e)
 {
