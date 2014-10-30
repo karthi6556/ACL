@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html ng-app="store">
+ <head>
+  <title>App Config</title>
+   <meta charset="UTF-8"> 
+  <!--Bootstrap Styles-->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="index.css" />
+  <!-- AngularJS Object Functions -->
+  <script src="angular-1.2.23/angular.min.js"></script>
+  <!-- Jquery -->
+  <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
+ </head>
+ <!-- Angular Controller -->
+ <body ng-controller="RequestController">
+   <!--App Config Code Starts Here -->
+   <div class="container">
+   <div class="page-header">
+    <h2>App Configuration Form</h2>
+   </div>
+   <form class="form-horizontal" name="appForm" role="form" ng-submit="post_app_data()">
+    <div class="form-group">
+     <label for="Config_Type" class="control-label col-sm-3">Config Type</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="Config_Type" class="form-control" id="Config_Type" placeHolder="Config Type" name="Config_Type" required>
+      </div>
+    </div>
+    <div class="form-group">
+     <label for="Config_Code" class="control-label col-sm-3">Config Code</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="Config_Code" class="form-control" id="Config_Code" placeHolder="Config Code" name="Config_Code" ng-pattern="/^[A-Z]+$/" required>
+       <span class="help-block" ng-show="appForm.Config_Code.$error.pattern">Alphabets Only.</span>
+     </div>
+   </div>
+   <div class="form-group">
+     <label for="Config_Desc" class="control-label col-sm-3">Config Description</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="Config_Desc" class="form-control" id="Config_Desc" placeHolder="Config Description" name="Config_Desc" required>
+      </div>
+    </div>
+   <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" ng-disabled="appForm.$invalid" class="btn btn-success">Submit</button>
+      <button type="button" ng-click="reset_app_data()" class="btn btn-warning">Reset</button>
+     </div>
+    </div>
+   </form>
+   <div id="app"></div>
+   </div>
+   <!--User Registration Code Ends Here -->
+  </div>
+ </body>
+ <!-- Get,Post Data Script -->
+ <script src="App_Access.js"></script>
+</html>
