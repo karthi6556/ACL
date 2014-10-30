@@ -102,6 +102,9 @@ $scope.features_disp=function(){
  }
 //Reset Data
  $scope.reset_feat_user=function(){
+  $scope.user_id='';
+  $scope.features_id='';
+  $scope.role_id='';
   document.getElementById("role_features").innerHTML="";
   document.getElementById("role_user").innerHTML="";
  }
