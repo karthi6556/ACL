@@ -6,7 +6,7 @@ $scope.roles=false;
 $scope.features=false;
 //Date Function Format YYYY-MM-DD
  var d=new Date();
- $scope.user_joined=d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate();
+ $scope.user_joined=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 //Method for Resetting Users Form Fields
  $scope.reset_users_data=function(){
   $scope.user_name='';
