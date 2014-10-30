@@ -100,6 +100,11 @@ $scope.features_disp=function(){
    document.getElementById("features").innerHTML="Failed";
   })
  }
+//Reset Data
+ $scope.reset_feat_user=function(){
+  document.getElementById("role_features").innerHTML="";
+  document.getElementById("role_user").innerHTML="";
+ }
 //Method for Role Features Data
  $scope.role_features_data=function(){
   $http({
@@ -109,10 +114,12 @@ $scope.features_disp=function(){
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
+   document.getElementById("role_features").innerHTML=data;
    console.log(data);
    console.log(status);
   })
   .error(function(status){
+   document.getElementById("role_features").innerHTML="Failed";
    console.log(status);
   })
  }
@@ -125,10 +132,12 @@ $scope.features_disp=function(){
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
+   document.getElementById("role_user").innerHTML=data;
    console.log(data);
    console.log(status);
   })
   .error(function(status){
+	  document.getElementById("role_user").innerHTML="Failed";
    console.log(status);
   })
  }

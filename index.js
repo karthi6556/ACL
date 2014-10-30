@@ -1,4 +1,4 @@
-//Jquery Functions
+//Jquery Functions for index page
 var main=function(){
  $('li').click(function(){
   $('li').removeClass('active');

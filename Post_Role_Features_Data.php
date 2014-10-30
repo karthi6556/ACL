@@ -17,6 +17,7 @@ try{
  $stmt=$conn->prepare("INSERT INTO `role_features`(`role_id`,`features_id`)VALUES('$role_id','$features_id')");
   $stmt->execute();
   echo"Role_ID & Features_ID Inserted Successfully<br>";
+  echo"<strong>Role_ID -".$role_id."& Features_ID -".$features_id."</strong>";
 }
 catch(PDOException $e)
 {
