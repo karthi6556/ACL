@@ -144,6 +144,42 @@ $scope.features_disp=function(){
    console.log(status);
   })
  }
+//Update Data
+ $scope.update_data=function(){
+  $http({
+   method:'POST',
+   url:'http://www.phpdel.info/ACL/Update_Data.php',
+   data:{'user_id':this.v.user_id,'user_name':this.v.user_name},
+   headers:{'Content-Type':'text/plain'}
+  })
+  .success(function(data,status){
+   document.getElementById("status").innerHTML=data;
+   console.log(data);
+   console.log(status);
+  })
+  .error(function(status){
+   document.getElementById("status").innerHTML="Failed";
+   console.log(status);
+  })
+ }
+//Delete Data
+ $scope.delete_data=function(){
+  $http({
+   method:'POST',
+   url:'http://www.phpdel.info/ACL/Delete_Data.php',
+   data:{'user_id':this.v.user_id,'user_name':this.v.user_name},
+   headers:{'Content-Type':'text/plain'}
+  })
+  .success(function(data,status){
+   document.getElementById("status").innerHTML=data;
+   console.log(data);
+   console.log(status);
+  })
+  .error(function(status){
+   document.getElementById("status").innerHTML="Failed";
+   console.log(status);
+  })
+ }
 //GET Method 
  $http({
 	   method:'GET',
