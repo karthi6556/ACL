@@ -4,9 +4,7 @@ app.controller('RequestController',function($scope,$http){
 $scope.users=true;
 $scope.roles=false;
 $scope.features=false;
-//Date Function Format YYYY-MM-DD
- var d=new Date();
- $scope.user_joined=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
 //Method for Resetting Users Form Fields
  $scope.reset_users_data=function(){
   $scope.user_name='';
@@ -25,7 +23,7 @@ $scope.users_disp=function(){
  $scope.post_users_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Post_Users_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Users_Data.php',
    data:{'user_name':$scope.user_name,'user_designation':$scope.user_designation,'user_department':$scope.user_department,'user_joined':$scope.user_joined},
    headers:{'Content-Type':'text/plain'}
   })
@@ -55,7 +53,7 @@ $scope.roles_disp=function(){
  $scope.post_roles_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Post_Roles_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Roles_Data.php',
    data:{'role_name':$scope.role_name,'role_purpose':$scope.role_purpose},
    headers:{'Content-Type':'text/plain'}
   })
@@ -86,7 +84,7 @@ $scope.features_disp=function(){
  $scope.post_features_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Post_Features_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Features_Data.php',
    data:{'features_name':$scope.features_name,'features_descr':$scope.features_descr,'features_perm':$scope.features_perm},
    headers:{'Content-Type':'text/plain'}
   })
@@ -112,7 +110,7 @@ $scope.features_disp=function(){
  $scope.role_features_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Post_Role_Features_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Role_Features_Data.php',
    data:{'role_id':$scope.role_id,'features_id':$scope.features_id},
    headers:{'Content-Type':'text/plain'}
   })
@@ -130,7 +128,7 @@ $scope.features_disp=function(){
  $scope.role_users_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Post_Role_Users_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Post_Role_Users_Data.php',
    data:{'role_id':$scope.role_id,'user_id':$scope.user_id},
    headers:{'Content-Type':'text/plain'}
   })
@@ -148,8 +146,8 @@ $scope.features_disp=function(){
  $scope.update_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Update_Data.php',
-   data:{'user_id':this.v.user_id,'user_name':this.v.user_name},
+   url:'http://localhost:8080/GitHub/ACL/Update_Data.php',
+   data:{'user_id':this.v.user_id,'user_name':this.v.user_name,'user_desg':this.v.user_designation},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
@@ -166,7 +164,7 @@ $scope.features_disp=function(){
  $scope.delete_data=function(){
   $http({
    method:'POST',
-   url:'http://www.phpdel.info/ACL/Delete_Data.php',
+   url:'http://localhost:8080/GitHub/ACL/Delete_Data.php',
    data:{'user_id':this.v.user_id,'user_name':this.v.user_name},
    headers:{'Content-Type':'text/plain'}
   })
@@ -183,7 +181,7 @@ $scope.features_disp=function(){
 //GET Method 
  $http({
 	   method:'GET',
-	   url:'http://www.phpdel.info/ACL/Get_Data.php',
+	   url:'http://localhost:8080/GitHub/ACL/Get_Data.php',
 	   headers:{'Content-Type':'text/plain'} 
 	   })
  .success(function(data,status)
