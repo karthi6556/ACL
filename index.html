@@ -81,6 +81,16 @@
    </div>
    <form class="form-horizontal" name="rolesForm" role="form" ng-submit="post_roles_data()">
     <div class="form-group">
+     <label for="role_id" class="control-label col-sm-2">Role ID</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="role_id" class="form-control" id="role_id" placeHolder="RoleID" name="role_id" ng-pattern="/^ROLE[1-5]{1}$/"  required>
+       <span ng-show="rolesForm.role_id.$dirty">
+        <span class="help-block error" ng-show="rolesForm.role_id.$invalid">Pattern ROLE with 1 digits.Ex:ROLE1 to ROLE5.
+        </span>
+       </span>
+      </div>
+    </div>
+    <div class="form-group">
      <label for="role_name" class="control-label col-sm-2">Role Name</label>
       <div class="col-sm-4">
        <input type="text" ng-model="role_name" class="form-control" id="role_name" placeHolder="RoleName" name="role_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="15"  required>
@@ -99,8 +109,8 @@
         </span>
        </span>
      </div>
-   </div>
-   <div class="form-group">
+     </div>
+     <div class="form-group">
      <div class="col-sm-offset-2 col-sm-3">
       <button type="submit" ng-disabled="rolesForm.$invalid" class="btn btn-success">Submit</button>
       <button type="button" ng-click="reset_roles_data()" class="btn btn-warning">Reset</button>
@@ -108,6 +118,23 @@
     </div>
    </form>
    <div id="roles"></div>
+     <div class="col-sm-12">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>Roles ID</th>
+        <th>Roles Name</th>
+        <th>Roles Purpose</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="y in get.roles|filter:roles_id">
+        <td ng-bind-template="{{y.roles_id}}"></td>
+        <td ng-bind-template="{{y.roles_name}}"></td>
+        <td ng-bind-template="{{y.roles_descr}}"></td>
+       </tr>
+      </tbody>
+     </table>
    </div>
    <!--Roles Registration Code Ends Here -->
    <!--Features Registration Code Starts Here-->
@@ -115,6 +142,17 @@
    <div class="page-header">
     <h2>Features Registration</h2>
    </div>
+   <form class="form-horizontal" name="featuresForm" role="form" ng-submit="post_features_data()">
+    <div class="form-group">
+     <label for="features_id" class="control-label col-sm-2">FeaturesID</label>
+      <div class="col-sm-4">
+       <input type="text" ng-model="features_id" class="form-control" id="features_id" placeHolder="FeaturesID" name="features_id" ng-pattern="/^FEAT[0-9]{3}$/" required>
+       <span ng-show="featuresForm.features_id.$dirty">
+        <span class="help-block error" ng-show="featuresForm.features_id.$invalid">Pattern FEAT with 1 digits.Ex:FEAT001 to FEAT999.
+        </span>
+       </span>
+      </div>
+    </div>
    <form class="form-horizontal" name="featuresForm" role="form" ng-submit="post_features_data()">
     <div class="form-group">
      <label for="features_name" class="control-label col-sm-2">Features Name</label>
@@ -154,7 +192,27 @@
     </div>
    </form>
    <div id="features"></div>
-   </div>
+   <div class="col-sm-12">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>Features ID</th>
+        <th>Features Name</th>
+        <th>Features Description</th>
+        <th>Features Permission</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="x in get.features|filter:features_id">
+        <td ng-bind-template="{{x.features_id}}"></td>
+        <td ng-bind-template="{{x.features_name}}"></td>
+        <td ng-bind-template="{{x.features_descr}}"></td>
+        <td ng-bind-template="{{x.features_perm}}"></td>
+       </tr>
+      </tbody>
+     </table>
+     </div>
+    </div>
    <!--Features Registration Code Ends Here-->
   </div>
  </body>

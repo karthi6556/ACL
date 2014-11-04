@@ -54,7 +54,7 @@ $scope.roles_disp=function(){
   $http({
    method:'POST',
    url:'http://localhost:8080/GitHub/ACL/Post_Roles_Data.php',
-   data:{'role_name':$scope.role_name,'role_purpose':$scope.role_purpose},
+   data:{'role_id':$scope.role_id,'role_name':$scope.role_name,'role_purpose':$scope.role_purpose},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
@@ -85,7 +85,7 @@ $scope.features_disp=function(){
   $http({
    method:'POST',
    url:'http://localhost:8080/GitHub/ACL/Post_Features_Data.php',
-   data:{'features_name':$scope.features_name,'features_descr':$scope.features_descr,'features_perm':$scope.features_perm},
+   data:{'features_id':$scope.features_id,'features_name':$scope.features_name,'features_descr':$scope.features_descr,'features_perm':$scope.features_perm},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
