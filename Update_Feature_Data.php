@@ -8,14 +8,14 @@ include'dbConnect.php';
 $data=file_get_contents("php://input");
 //Decodes Posted Objects into Associative Array
 $json=json_decode($data);
-$user_id=$json->user_id;
-$user_name=$json->user_name;
-$user_desig=$json->user_desg; 
+$features_name=$json->features_name;
+$features_descr=$json->features_descr;
+$features_perm=$json->features_perm; 
 try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
- $q=$conn->prepare("UPDATE `users` SET `user_name` = '$user_name',`user_designation` = '$user_desig' WHERE `user_id` = '$user_id'");
+ $q=$conn->prepare("UPDATE `features` SET `features_name` = '$features_name',`features_descr` = '$features_descr',`features_perm` = '$features_perm' WHERE `features_name` = '$features_name'");
  $q->execute();
- echo"Updated Successfully.ID:<strong>".$user_id."<strong>";
+ echo"Updated Successfully.FeaturesName:<strong>".$features_name."<strong>";
 }
 catch(PDOException $e)
 {

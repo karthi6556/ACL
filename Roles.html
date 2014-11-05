@@ -13,72 +13,126 @@
  <body ng-controller="RequestController">
   <div class="container">
    <form role="form" name="rolesForm" ng-submit="role_users_data();role_features_data();">
-    <div class="col-sm-3">
-     <input type="text" class="form-control" ng-model="user_name" required>
+    <!--User Dropdown -->
+    <div class="col-sm-3 dropdown">
+     <input type="text" class="form-control" data-toggle="dropdown" ng-model="user_name" required>
+     <ul class="dropdown-menu">
+      <li ng-repeat="a in get.users | filter:user_name">
+       <a ng-model="userd" ng-value="a.user_name" ng-click="user_add()">{{a.user_name}}</a>
+      </li>
+     </ul>    
+    </div>
+    <!-- Role Dropdown-->
+    <div class="col-sm-3 dropdown">
+     <input type="text" class="form-control" data-toggle="dropdown" ng-model="role_id" required>
+     <ul class="dropdown-menu">
+      <li ng-repeat="b in get.roles | filter:role_id">
+       <a ng-model="roled" ng-value="b.role_id" ng-click="role_add()">{{b.role_id}}</a>
+      </li>
+     </ul>    
+    </div>
+    <!-- Feature Dropdown-->
+    <div class="col-sm-3 dropdown">
+     <input type="text" class="form-control" data-toggle="dropdown" ng-model="features_name" required>
+     <ul class="dropdown-menu">
+      <li ng-repeat="c in get.features | filter:features_name">
+       <a ng-model="featured" ng-value="c.features_name" ng-click="feature_add()">{{c.features_name}}</a>
+      </li>
+     </ul>    
     </div>
     <div class="col-sm-3">
-     <select class="form-control" ng-model="role_id" required>
-      <option ng-repeat="b in get.roles" ng-value="{{b.role_id}}">{{b.role_id}}</option>
-     </select>
-    </div>
-    <div class="col-sm-3">
-    <input type="text" class="form-control" ng-model="features_name" required>
-    </div>
-    <div class="col-sm-3">
-     <button type="submit" class="btn btn-success">Submit</button>
-     <button type="button" class="btn btn-warning" ng-click="reset_feat_user()">Reset</button>
+     <button type="submit" class="btn btn-success" ng-disabled="rolesForm.$invalid">Submit</button>
+     <button type="button" class="btn btn-warning" ng-click="reset_data()">Reset</button>
     </div>
    </form>
-   <div class="row">
+   </div>
+   <!-- Mysql CRUD Results-->
    <p id="role_features"></p>
    <p id="role_user"></p>
-    <div class="col-sm-3">
+   <p id="status"></p>
+   <div class="row">
+   <!-- Nav Bar-->
+   <div class="container">
+   <nav class="navbar">
+    <ul class="nav nav-pills"> 
+     <li class="active"><a ng-click="users_table_disp()">Edit Users Table</a></li> 
+     <li><a ng-click="roles_table_disp()">Edit Roles Table</a></li> 
+     <li><a ng-click="features_table_disp()">Edit Features Table</a></li>
+    </ul>
+   </nav>
+   <!-- User table-->
+    <div ng-show="users_table" class="col-sm-12">
      <table class="table table-hover">
       <thead>
        <tr>
+        <th>Edit</th>
+        <th>ID</th>
         <th>Username</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Joined Date</th>
        </tr>
       </thead>
       <tbody>
-       <tr ng-repeat="v in get.users|filter:user_name">
-        <td><input type="text" ng-model="v.user_name" ng-disabled="true"></td>
-        <!--<td>
-           <button type="button" ng-click="update_data()">Update</button>
-           <button type="button" ng-click="delete_data()">Delete</button>
-        </td>-->
-       </tr>
-      </tbody>
-     </table>
-     <p id="status"></p>
-    </div>
-    <div class="col-sm-3">
-     <table class="table table-hover">
-      <thead>
-       <tr>
-        <th>Role ID</th>
-        <th>Role Name</th>
-       </tr>
-      </thead>
-      <tbody>
-       <tr ng-repeat="w in get.roles|filter:role_id">
-        <td ng-bind-template="{{w.role_id}}"></td>
-        <td ng-bind-template="{{w.role_name}}"></td>
+       <tr ng-repeat="v in get.users">
+        <td><button type="button" class="btn btn-default" ng-click="user_check();"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+        <td>{{v.id}}</td>
+        <td><input type="text" ng-model="v.user_name" ng-disabled="user_enable"></td>
+        <td><input type="text" ng-model="v.user_designation" ng-disabled="user_enable"></td>
+        <td><input type="text" ng-model="v.user_department" ng-disabled="user_enable"></td>
+        <td><input type="date" ng-model="v.user_joined" ng-disabled="user_enable"></td>
+        <td><button type="button" class="btn btn-success" ng-show="user_toggle" ng-click="update_user_data();user_check();"><span class="glyphicon glyphicon-ok"></span>Update</button>
+         </td>
        </tr>
       </tbody>
      </table>
     </div>
-    <div class="col-sm-6">
+    <!-- Role Table-->
+    <div ng-show="roles_table" class="col-sm-12">
      <table class="table table-hover">
       <thead>
        <tr>
-        <th>Features ID</th>
-        <th>Features Name</th>
+        <th>Edit</th>
+        <th>ID</th>
+        <th>Role-ID</th>
+        <th>Role-Name</th>
+        <th>Role-Purpose</th>
        </tr>
       </thead>
       <tbody>
-       <tr ng-repeat="x in get.features|filter:features_name">
-        <td ng-bind-template="{{x.id}}"></td>
-        <td ng-bind-template="{{x.features_name}}"></td>
+       <tr ng-repeat="w in get.roles">
+        <td><button type="button" class="btn btn-default" ng-click="role_check();"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+        <td>{{w.id}}</td>
+        <td><input type="text" ng-model="w.role_id" ng-disabled="role_enable"></td>
+        <td><input type="text" ng-model="w.role_name" ng-disabled="role_enable"></td>
+        <td><input type="text" ng-model="w.role_purpose" ng-disabled="role_enable"></td>
+        <td><button type="button" class="btn btn-success" ng-show="role_toggle" ng-click="update_role_data();role_check();"><span class="glyphicon glyphicon-ok"></span>Update</button>
+         </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+    <!-- Feature Table-->
+    <div ng-show="features_table" class="col-sm-12">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>Edit</th>
+        <th>ID</th>
+        <th>Features-Name</th>
+        <th>Description</th>
+        <th>Permission</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="x in get.features">
+        <td><button type="button" class="btn btn-default" ng-click="feature_check();"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+        <td>{{x.id}}</td>
+        <td><input type="text" ng-model="x.features_name" ng-disabled="feature_enable"></td>
+        <td><input type="text" ng-model="x.features_descr" ng-disabled="feature_enable"></td>
+        <td><input type="text" ng-model="x.features_perm" ng-disabled="feature_enable"></td>
+        <td><button type="button" class="btn btn-success" ng-show="feature_toggle" ng-click="update_feature_data();feature_check();"><span class="glyphicon glyphicon-ok"></span>Update</button>
+         </td>
        </tr>
       </tbody>
      </table>
@@ -86,6 +140,11 @@
    </div>
   </div>
  </body>
- <!-- Get,Post Data Script -->
- <script src="Request.js"></script>
+ <script src="bootstrap/js/dropdown.js"></script>
+ <!-- Angularjs Module Script -->
+ <script src="app.js"></script>
+ <!-- Angularjs Controller -->
+ <script src="RequestController.js"></script>
+ <!-- Index Page Jquery -->
+ <script src="index.js"></script>
 </html>
