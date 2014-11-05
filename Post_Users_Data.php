@@ -13,19 +13,12 @@ $user_name=$json->user_name;
 $user_designation=$json->user_designation;
 $user_department=$json->user_department;
 $user_joined=$json->user_joined;
-//Declaring User_ID in this Format as USER01
-$con=mysqli_connect($host,$username,$password,$db_name);
-mysqli_select_db($db_name,$con);
-$query="SELECT * FROM `users`";
-$row=mysqli_query($con,$query);
-//User ID
-$user_id="USER0".(mysqli_num_rows($row)+1);
 //Exception Handling
 try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
- $stmt=$conn->prepare("INSERT INTO `users`(`user_id`,`user_name`,`user_designation`,`user_department`,`user_joined`)VALUES('$user_id','$user_name','$user_designation','$user_department','$user_joined')");
+ $stmt=$conn->prepare("INSERT INTO `users`(`user_name`,`user_designation`,`user_department`,`user_joined`)VALUES('$user_name','$user_designation','$user_department','$user_joined')");
   $stmt->execute();
-  echo"User Registered Successfully.<br>User-ID:<strong>".$user_id."</srtong>";
+  echo"User Registered Successfully.<br>User-Name:<strong>".$user_name."</srtong>";
 }
 catch(PDOException $e)
 {

@@ -4,10 +4,10 @@
   <title>Registrations</title>
    <meta charset="UTF-8"> 
   <!--Bootstrap Styles-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="index.css" />
   <!-- AngularJS Object Functions -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.min.js"></script>
+  <script src="angular-1.2.23/angular.min.js"></script>
   <!-- Jquery -->
   <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
  </head>
@@ -31,9 +31,9 @@
     <div class="form-group">
      <label for="user_name" class="control-label col-sm-2">Username</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="user_name" class="form-control" id="user_name" placeHolder="UserName" name="user_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="25"  required>
+       <input type="text" ng-model="user_name" class="form-control" id="user_name" placeHolder="UserName" name="user_name" ng-pattern="/^[a-zA-Z-0-9]+$/" ng-minlength="3" ng-maxlength="25"  required>
        <span ng-show="regForm.user_name.$dirty">
-        <span class="help-block error" ng-show="regForm.user_name.$invalid">3 to 25 Alphabets & Numbers,other symbols aren't allowed.
+        <span class="help-block error" ng-show="regForm.user_name.$invalid">3 to 25 Alphabets,Numbers,- are only Allowed.
         </span>
        </span>
       </div>
@@ -41,9 +41,9 @@
     <div class="form-group">
      <label for="user_designation" class="control-label col-sm-2">Designation</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="user_designation" class="form-control" id="user_designation" placeHolder="Designation" name="user_desg" ng-minlength="3" ng-maxlength="10" required>
+       <input type="text" ng-model="user_designation" class="form-control" id="user_designation" placeHolder="Designation" name="user_desg" ng-minlength="3" ng-maxlength="20" required>
        <span ng-show="regForm.user_desg.$dirty">
-        <span class="help-block error" ng-show="regForm.user_desg.$invalid">3 to 10 Characters Only.
+        <span class="help-block error" ng-show="regForm.user_desg.$invalid">3 to 20 Characters Only.
         </span>
        </span>
      </div>
@@ -93,9 +93,9 @@
     <div class="form-group">
      <label for="role_name" class="control-label col-sm-2">Role Name</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="role_name" class="form-control" id="role_name" placeHolder="RoleName" name="role_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="15"  required>
+       <input type="text" ng-model="role_name" class="form-control" id="role_name" placeHolder="RoleName" name="role_name" ng-pattern="/^[a-zA-Z_]+$/" ng-minlength="3" ng-maxlength="15"  required>
        <span ng-show="rolesForm.role_name.$dirty">
-        <span class="help-block error" ng-show="rolesForm.role_name.$invalid">3 to 15 Alphabets & Numbers,other symbols aren't allowed.
+        <span class="help-block error" ng-show="rolesForm.role_name.$invalid">3 to 15 Alphabets,Underscores are allowed & Numbers,other symbols aren't allowed.
         </span>
        </span>
       </div>
@@ -128,13 +128,14 @@
        </tr>
       </thead>
       <tbody>
-       <tr ng-repeat="y in get.roles|filter:roles_id">
-        <td ng-bind-template="{{y.roles_id}}"></td>
-        <td ng-bind-template="{{y.roles_name}}"></td>
-        <td ng-bind-template="{{y.roles_descr}}"></td>
+       <tr ng-repeat="y in get.roles|filter:role_id">
+        <td ng-bind-template="{{y.role_id}}"></td>
+        <td ng-bind-template="{{y.role_name}}"></td>
+        <td ng-bind-template="{{y.role_purpose}}"></td>
        </tr>
       </tbody>
      </table>
+    </div>
    </div>
    <!--Roles Registration Code Ends Here -->
    <!--Features Registration Code Starts Here-->
@@ -144,22 +145,11 @@
    </div>
    <form class="form-horizontal" name="featuresForm" role="form" ng-submit="post_features_data()">
     <div class="form-group">
-     <label for="features_id" class="control-label col-sm-2">FeaturesID</label>
-      <div class="col-sm-4">
-       <input type="text" ng-model="features_id" class="form-control" id="features_id" placeHolder="FeaturesID" name="features_id" ng-pattern="/^FEAT[0-9]{3}$/" required>
-       <span ng-show="featuresForm.features_id.$dirty">
-        <span class="help-block error" ng-show="featuresForm.features_id.$invalid">Pattern FEAT with 1 digits.Ex:FEAT001 to FEAT999.
-        </span>
-       </span>
-      </div>
-    </div>
-   <form class="form-horizontal" name="featuresForm" role="form" ng-submit="post_features_data()">
-    <div class="form-group">
      <label for="features_name" class="control-label col-sm-2">Features Name</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="features_name" class="form-control" id="features_name" placeHolder="FeaturesName" name="features_name" ng-pattern="/^[a-zA-Z]+$/" ng-minlength="3" ng-maxlength="10"  required>
+       <input type="text" ng-model="features_name" class="form-control" id="features_name" placeHolder="FeaturesName" name="features_name" ng-minlength="3" ng-maxlength="100"  required>
        <span ng-show="featuresForm.features_name.$dirty">
-        <span class="help-block error" ng-show="featuresForm.features_name.$invalid">3 to 10 Alphabets & Numbers,other symbols aren't allowed.
+        <span class="help-block error" ng-show="featuresForm.features_name.$invalid">3 to 100 Alphabets & Numbers,other symbols aren't allowed.
         </span>
        </span>
       </div>
@@ -167,11 +157,7 @@
     <div class="form-group">
      <label for="features_descr" class="control-label col-sm-2">Features Description</label>
       <div class="col-sm-4">
-       <input type="text" ng-model="features_descr" class="form-control" id="features_descr" placeHolder="Features Description" name="features_descr" ng-minlength="5" ng-maxlength="40" required>
-       <span ng-show="featuresForm.features_descr.$dirty">
-        <span class="help-block error" ng-show="featuresForm.features_descr.$invalid">5 to 40 Characters Only.
-        </span>
-       </span>
+       <input type="text" ng-model="features_descr" class="form-control" id="features_descr" placeHolder="Features Description" name="features_descr">
      </div>
    </div>
    <div class="form-group">
@@ -196,15 +182,13 @@
      <table class="table table-hover">
       <thead>
        <tr>
-        <th>Features ID</th>
         <th>Features Name</th>
         <th>Features Description</th>
         <th>Features Permission</th>
        </tr>
       </thead>
       <tbody>
-       <tr ng-repeat="x in get.features|filter:features_id">
-        <td ng-bind-template="{{x.features_id}}"></td>
+       <tr ng-repeat="x in get.features|filter:features_name">
         <td ng-bind-template="{{x.features_name}}"></td>
         <td ng-bind-template="{{x.features_descr}}"></td>
         <td ng-bind-template="{{x.features_perm}}"></td>
@@ -212,6 +196,7 @@
       </tbody>
      </table>
      </div>
+    </div>
     </div>
    <!--Features Registration Code Ends Here-->
   </div>

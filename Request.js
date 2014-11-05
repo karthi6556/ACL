@@ -85,7 +85,7 @@ $scope.features_disp=function(){
   $http({
    method:'POST',
    url:'http://localhost:8080/GitHub/ACL/Post_Features_Data.php',
-   data:{'features_id':$scope.features_id,'features_name':$scope.features_name,'features_descr':$scope.features_descr,'features_perm':$scope.features_perm},
+   data:{'features_name':$scope.features_name,'features_descr':$scope.features_descr,'features_perm':$scope.features_perm},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
@@ -100,8 +100,8 @@ $scope.features_disp=function(){
  }
 //Reset Data
  $scope.reset_feat_user=function(){
-  $scope.user_id='';
-  $scope.features_id='';
+  $scope.user_name='';
+  $scope.features_name='';
   $scope.role_id='';
   document.getElementById("role_features").innerHTML="";
   document.getElementById("role_user").innerHTML="";
@@ -111,7 +111,7 @@ $scope.features_disp=function(){
   $http({
    method:'POST',
    url:'http://localhost:8080/GitHub/ACL/Post_Role_Features_Data.php',
-   data:{'role_id':$scope.role_id,'features_id':$scope.features_id},
+   data:{'role_id':$scope.role_id,'features_name':$scope.features_name},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){
@@ -129,7 +129,7 @@ $scope.features_disp=function(){
   $http({
    method:'POST',
    url:'http://localhost:8080/GitHub/ACL/Post_Role_Users_Data.php',
-   data:{'role_id':$scope.role_id,'user_id':$scope.user_id},
+   data:{'role_id':$scope.role_id,'user_name':$scope.user_name},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){

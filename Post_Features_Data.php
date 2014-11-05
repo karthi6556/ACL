@@ -12,13 +12,12 @@ $json=json_decode($data);
 $features_name=$json->features_name;
 $features_descr=$json->features_descr;
 $features_perm=$json->features_perm;
-$features_id=$json->features_id;
 //Exception Handling
 try{
  $conn=new PDO("mysql:dbname=$db_name;host=$host","$username","$password");
- $stmt=$conn->prepare("INSERT INTO `features`(`features_id`,`features_name`,`features_descr`,`features_perm`)VALUES('$features_id','$features_name','$features_descr','$features_perm')");
+ $stmt=$conn->prepare("INSERT INTO `features`(`features_name`,`features_descr`,`features_perm`)VALUES('$features_name','$features_descr','$features_perm')");
   $stmt->execute();
-  echo"Features Data Inserted Successfully.<br>Features-ID:<strong>".$features_id."</srtong>";
+  echo"Features Data Inserted Successfully.<br><strong>".$features_name."</strong>";
 }
 catch(PDOException $e)
 {
