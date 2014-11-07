@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html ng-app="store">
+ <head>
+  <title>Login</title>
+   <meta charset="UTF-8"> 
+  <!--Bootstrap Styles-->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="index.css" />
+  <!-- AngularJS Object Functions -->
+  <script src="angular-1.2.23/angular.min.js"></script>
+  <!-- Jquery -->
+  <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
+ </head>
+ <!-- Angular Controller -->
+ <body ng-controller="LoginController">
+  <div class="conatiner">
+   <div ng-show="login">
+    <div class="page-header">
+     <h1>Login</h1>
+    </div>
+    <form class="form-horizontal" name="loginForm" role="form" ng-submit="check_data()"> 
+     <div class="form-group">
+      <label for="user_name" class="control-label col-sm-2">Username</label>
+       <div class="col-sm-6">
+        <input type="text" ng-model="user_name" class="form-control" id="user_name" placeHolder="UserName" name="user_name" required>
+        <span>Ex:(DOC-A,DOC-B,DOC-C)<strong>,(OFC-S-1,OFC-S-2,OFC-S-3),</strong>(SA-1,SA-2)</span>
+      </div>
+     </div>
+     <div class="form-group">
+      <label for="pass_word" class="control-label col-sm-2">Password</label>
+       <div class="col-sm-6">
+        <input type="password" ng-model="pass_word" class="form-control" id="pass_word" placeHolder="Password" name="pass_word" required>
+        <span>Ex:(ROLE1)<strong>,(ROLE2),</strong>(ROLE3)</span>
+      </div>
+     </div>
+     <div class="form-group">
+     <div class="col-sm-offset-2 col-sm-3">
+      <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-success">Submit</button>
+      <button type="button" ng-click="reset_data()" class="btn btn-warning">Reset</button>
+     </div>
+    </div>
+    </form>
+    <p id="error"></p>
+   </div>
+   <div ng-show="access">
+     <button type="button" class="pull-right btn btn-danger" ng-click="log_out()">Logout</button>
+     <label ng-show="full"><strong>FULL ACCESS 50</strong></label>
+     <div ng-show="full" ng-repeat="a in get.features">
+      <a href="{{a.features_name}}.html">{{a.features_name}}</a>
+     </div>
+     <label ng-show="maximum"><strong>MAXIMUM ACCESS 25</strong></label>
+     <div ng-show="maximum" ng-repeat="b in get.features_y">
+      <a href="{{b.features_name}}.html">{{b.features_name}}</a>
+     </div>
+      <label ng-show="minimum"><strong>MINIMUM ACCESS 10</strong></p></label>
+     <div ng-show="minimum" ng-repeat="c in get.features_n">
+      <a href="{{c.features_name}}.html">{{c.features_name}}</a>
+     </div>
+   </div>
+  </div>
+ </body>
+ <!-- Angularjs Module Script -->
+ <script src="app.js"></script>
+ <!-- Angularjs Controller -->
+ <script src="LoginController.js"></script>
+</html>

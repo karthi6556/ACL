@@ -36,4 +36,6 @@ echo json_encode($store);
 catch(PDOException $e){
  echo'Connection failed '.$e->getMessage();
 }
-?> 
+?>
+
+
