@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html ng-app="store">
+ <head>
+  <title>Symptom</title>
+   <meta charset="UTF-8"> 
+  <!--Bootstrap Styles-->
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+  <!-- AngularJS Object Functions -->
+  <script src="angular-1.2.23/angular.min.js"></script>
+  <!-- Jquery -->
+  <script type="text/javascript" src="jquery-2.1.1/jquery.js"></script>
+ </head>
+ <body ng-controller="SymptomController">
+  <div class="container">
+  <form role="form" name="symForm" ng-submit="add_symptom_data();">
+    <!--Category -->
+    <div class="col-sm-3 dropdown">
+     <input type="text" class="form-control" data-toggle="dropdown" ng-model="category" required>
+     <ul class="dropdown-menu">
+      <li ng-repeat="a in get.symptom | filter:category">
+       <a ng-model="categoryd" ng-value="a.category" ng-click="category_add()">{{a.category}}</a>
+      </li>
+     </ul>    
+    </div>
+    <!-- SubCategory-->
+    <div class="col-sm-3 dropdown">
+     <input type="text" class="form-control" data-toggle="dropdown" ng-model="sub_category" required>
+     <ul class="dropdown-menu">
+      <li ng-repeat="b in get.symptom | filter:sub_category">
+       <a ng-model="subd" ng-value="b.sub_category" ng-click="sub_category_add()">{{b.sub_category}}</a>
+      </li>
+     </ul>    
+    </div>
+    <!-- Symptom Name-->
+    <div class="col-sm-3 dropdown">
+     <input type="text" class="form-control" data-toggle="dropdown" ng-model="symptom_name" required>
+     <ul class="dropdown-menu">
+      <li ng-repeat="c in get.symptom | filter:symptom_name">
+       <a ng-model="symd" ng-value="c.symptom_name" ng-click="symptom_add()">{{c.symptom_name}}</a>
+      </li>
+     </ul>    
+    </div>
+    <!-- Display_Sequence-->
+    <div class="col-sm-1">
+     <input type="number" class="form-control" ng-model="display_sequence" required>    
+    </div>
+    <div class="col-sm-1">
+     <button type="submit" class="btn btn-success" ng-disabled="symForm.$invalid">Submit</button>
+    </div>
+    <div class="col-sm-1">
+     <button type="button" class="btn btn-warning" ng-click="reset_data()">Reset</button>
+    </div>
+   </form>
+   <p id="status"></p>
+   <div class="row">
+    <div class="col-sm-12">
+     <table class="table table-hover">
+      <thead>
+       <tr>
+        <th>Edit</th>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Sub-Category</th>
+        <th>SymptomName</th>
+        <th>DisplaySequence</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr ng-repeat="w in get.symptom | filter:category | filter:sub_category | filter:symptom_name">
+        <td><button type="button" class="btn btn-default" ng-click="symptom_check();"><span class="glyphicon glyphicon-edit"></span>Edit</button></td>
+        <td>{{w.id}}</td>
+        <td><input type="text" class="form-control" ng-model="w.category" ng-disabled="symptom_enable"></td>
+        <td><input type="text" class="form-control" ng-model="w.sub_category" ng-disabled="symptom_enable"></td>
+        <td><input type="text" class="form-control" ng-model="w.symptom_name" ng-disabled="symptom_enable"></td>
+        <td><input type="text" class="form-control" ng-model="w.display_sequence" ng-disabled="symptom_enable"></td>
+        <td><button type="button" class="btn btn-success" ng-show="symptom_toggle" ng-click="update_symptom_data();"><span class="glyphicon glyphicon-ok"></span>Update</button>
+         </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </div>
+  </div>
+ </body>
+ <script src="bootstrap/js/dropdown.js"></script>
+ <!-- Angularjs Module Script -->
+ <script src="app.js"></script>
+ <!-- Angularjs Controller -->
+ <script src="SymptomController.js"></script>
+</html>
