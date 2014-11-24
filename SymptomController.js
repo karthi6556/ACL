@@ -21,7 +21,8 @@ $scope.reset_data=function(){
  $scope.category="";
  $scope.sub_category="";
  $scope.symptom_name="";
- $scope.category=0;
+ $scope.display_sequence="";
+ document.getElementById("status").innerHTML="";
 }
 //Show/Hide Role Update Button
 $scope.symptom_enable=true;
@@ -50,7 +51,7 @@ $scope.add_symptom_data=function(){
   $http({
    method:'POST',
    url:'http://localhost:8080/GitHub/ACL/Add_Symptom.php',
-   data:{'id':$scope.id,'category':$scope.category,'sub_category':$scope.sub_category,'symptom_name':$scope.symptom_name,'display_sequence':$scope.display_sequence},
+   data:{'category':$scope.category,'sub_category':$scope.sub_category,'symptom_name':$scope.symptom_name,'display_sequence':$scope.display_sequence},
    headers:{'Content-Type':'text/plain'}
   })
   .success(function(data,status){

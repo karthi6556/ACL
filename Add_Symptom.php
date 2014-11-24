@@ -9,16 +9,15 @@ $db="prism";
 $data=file_get_contents("php://input");
 //Decodes Posted Objects into Associative Array
 $json=json_decode($data);
-$id=$json->id;
 $category=$json->category;
 $sub_category=$json->sub_category;
 $symptom_name=$json->symptom_name; 
 $display_sequence=$json->display_sequence;
 try{
  $conn=new PDO("mysql:dbname=$db;host=$host","$username","$password");
- $q=$conn->prepare("INSERT INTO `symptom`(`category`,`sub_category`,`symptom_name`,`display_sequence`)VALUES('$category','$sub_category','$symptom_name','$display_sequence'");
+ $q=$conn->prepare("INSERT INTO `symptom`(`category`,`sub_category`,`symptom_name`,`display_sequence`)VALUES('$category','$sub_category','$symptom_name','$display_sequence')");
  $q->execute();
- echo"Updated Successfully.ID:<strong>".$id."<strong>";
+ echo"Added Category.:<strong>".$sub_category."<strong>";
 }
 catch(PDOException $e)
 {
